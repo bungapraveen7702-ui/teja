@@ -11,5 +11,10 @@ pipeline{
                 sh 'npm install'
             }
         }
+        stage('ESLint Analysis'){
+            steps{
+                sh 'npx eslint src'
+            }
+        }
     }
 }
