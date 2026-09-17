@@ -16,5 +16,10 @@ pipeline{
                 sh 'npx eslint .'
             }
         }
+        stage('Run unit tests'){
+            steps{
+                sh 'npm test'
+            }
+        }
     }
 }
