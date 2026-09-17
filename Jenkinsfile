@@ -1,54 +1,27 @@
-pipeline {
-    agent any
-
-    tools {
-        nodejs 'node'
-    }
-
-    stages {
-
-        stage('Checkout') {
-            steps {
+]pipeline{
+    agent any 
+    stages{
+        stage('checkout'){
+            steps{
                 checkout scm
             }
         }
-
-        stage('Install Dependencies') {
-            steps {
-                dir('cake') {
-                    sh 'npm install'
-                }
+        stage('Install Dependencies'){
+            steps{
+                sh 'npm install'
             }
         }
-
-        stage('ESLint Analysis') {
-            steps {
-                dir('cake') {
-                    sh 'npx eslint src'
-                }
+        stage('ESLint Analysis'){
+            steps{
+                sh 'npx eslint .'
             }
         }
-
-        stage('Run Unit Tests') {
-            steps {
-                dir('cake') {
-                    sh 'npm test'
-                }
+        stage('Run unit tests'){
+            steps{
+                sh 'npm test'
             }
         }
-
-        stage('SonarQube Analysis') {
-            steps {
-                dir('cake') {
-                    withSonarQubeEnv('SonarQube-Server') {
-                        sh '''
-                            npx sonarqube-scanner \
-                            -Dsonar.projectKey=SP-Cakes-Site \
-                            -Dsonar.sources=src
-                        '''
-                    }
-                }
-            }
-        }
+        
     }
 }
+
