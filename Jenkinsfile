@@ -65,5 +65,11 @@ pipeline {
                 sh 'trivy fs .'
             }
         }
+
+        stage('Build Application') {
+            steps {
+                sh 'npm run build'
+            }
+        }
     }
 }
