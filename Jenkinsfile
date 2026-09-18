@@ -25,8 +25,7 @@ pipeline{
             steps{
                 withSonarQubeEnv('SonarQube-server'){
                       withEnv(["PATH+SONAR=${tool 'SonarScanner'}/bin"]){
-                        
-                      }
+
                     sh '''
                     sonar-scanner\
                     -Dsonar.projectKey=SP-Cake-site\
@@ -37,6 +36,7 @@ pipeline{
                     -Dsonar.exclusions="**/*.test.js,**/node_modules/**"\
                     -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
                     '''
+                      }
                 }
             }
         }
