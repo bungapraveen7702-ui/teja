@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage('checkout'){
             steps{
-                checkout scm
+                git branch: 'main', url: 'https://github.com/bungapraveen7702-ui/teja.git'
             }
         }
         stage('Install Dependencies'){
