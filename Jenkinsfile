@@ -24,6 +24,9 @@ pipeline{
         stage('SonarQube Analysis'){
             steps{
                 withSonarQubeEnv('SonarQube-server'){
+                      withEnv(["PATH+SONAR=${tool 'SonarScanner'}/bin"]){
+                        
+                      }
                     sh '''
                     sonar-scanner\
                     -Dsonar.projectKey=SP-Cake-site\
@@ -40,4 +43,5 @@ pipeline{
         
     }
 }
+
 
